@@ -1,0 +1,9 @@
+
+<view class="game-starInfo">
+    <view class="container">
+        <view class="overflow-hidden" style="width:{{score_width}}">
+            <image class="upImage" src="../../images/star-full.png" ></image>
+        </view>
+    </view>
+   <text s-if="isText">&nbsp;{{gameScore}}</text>
+</view>

@@ -1,0 +1,20 @@
+{
+    "appid": "22866168",
+    "host": "baiduboxapp",
+    "preview": {
+        "packageId": 1102235
+    },
+    "projectname": "deskgame",
+    "publish": {
+        "version": "1.0.4"
+    },
+    "setting": {
+        "urlCheck": true
+    },
+    "swan": {
+        "baiduboxapp": {
+            "swanJsVersion": "3.250.31",
+            "extensionJsVersion": "1.20.6"
+        }
+    }
+}

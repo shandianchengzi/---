@@ -1,0 +1,7 @@
+{
+    "component": true,
+    "usingComponents": {
+        "score":"/component/score/score",
+        "star":"/component/star/star"
+    }
+}

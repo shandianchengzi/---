@@ -1,0 +1,14 @@
+image{
+    display: inline-block;
+    width: 40rpx;
+    height: 40rpx;
+
+}
+.stars-box{
+    text-align:center;
+}
+.placeholder{
+    font-size:9pt;
+    text-align:center;
+color:grey;
+}
