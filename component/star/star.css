@@ -1,0 +1,42 @@
+.game-starInfo {
+    display: flex;
+    align-items: center;
+}
+
+.game-starInfo>text {
+    color: #707070;
+    font-size: 8pt;
+}
+.container{
+    width: 89rpx;
+    height: 20rpx;
+    display: flex;
+    flex-direction: column;
+    background:url("../../images/star-emp.png") no-repeat;
+    background-size:cover;
+    margin:0;
+    padding:0;
+}
+.overflow-hidden{
+    overflow: hidden;
+    width: 40rpx;
+    height: 20rpx;
+    margin:0;
+    padding:0;
+}
+.upImage{
+    margin:0;
+    padding:0;
+    width: 89rpx;
+    height: 20rpx;
+    display:block;
+    
+}
+
+.downImage{
+    position: absolute;
+    margin: 0;
+    width: 89rpx;
+    height: 20rpx;
+    z-index: -1;
+}

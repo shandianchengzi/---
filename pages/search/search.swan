@@ -1,0 +1,93 @@
+<view class="container">
+<view s-if="{{!loadQuerySucess}}">
+            <view class="missing-box" bindtap="LoadingMethod">
+                <image class="signal" src="../../images/wifi.svg"></image>
+                <view>网络不给力，请稍后重试</view>
+                <view class="reload-btn" >重新加载</view>
+            </view>
+        </view>
+        <view s-else>
+        <view s-if="{{gamesList.length}}">
+    <view class="game-item" s-key="id" s-for="item, index in gamesList">
+        <view class='card-head'>
+            <view class="upper-head">
+                <view s-if="item.avatar">
+                    <image src="{{item.avatar}}" class="profile-photo radius"></image>
+                </view>
+                <view s-else>
+                    <image src="https://cdn.v2ex.com/gravatar/{{md5.hexMD5(item.nick)}}?d=retro&v=1.3.6"
+                        class="profile-photo radius"></image>
+                </view>
+                <view class="info-box">
+                    <text class="title">{{item.title}}</text>
+                    <view class="game-info">
+                        <text class="info-text">{{item.num}}</text>
+                    </view>
+                    <star gameScore="{{item.score}}"/>
+                </view>
+            </view>
+            <view class="game-briefInfo">
+                <text s-if="item.brief">{{item.brief}}</text>
+            <text s-else>暂无简介，点击查看详情吧！</text>
+            </view>
+            <view class="game-downInfo">
+                <view class="item-tag" s-key="idx" s-for-item="tag" s-for="{{item.tags}}">
+                    <text data-content="{{tag}}">{{tag}}</text>
+                </view>
+            </view>
+        </view>
+
+        <view class="switch-bar">
+            <text class="option {{num[item.gameId]==1?'active':''}}" data-num="1" data-gameId="{{item.gameId}}"
+                bindtap="changeNum">规则</text>
+            <text class="option {{num[item.gameId]==2?'active':''}}" data-num="2" data-gameId="{{item.gameId}}"
+                bindtap="changeNum">攻略</text>
+            <text class="option {{num[item.gameId]==3?'active':''}}" data-num="3" data-gameId="{{item.gameId}}"
+                bindtap="changeNum">评论</text>
+        </view>
+        <view class="card-body" s-if="{{num[item.gameId]==1}}">
+            <!-- 视频接口 -->
+            <view style="white-space: normal;" s-if="{{item.video[0]=='h'}}">
+                <video src="{{item.video}}"></video>
+            </view>
+            <view class="card-body-info" s-if="{{item.sucessRule}}">
+                <view class="body-info-title">胜利条件
+                </view>
+                <text class="body-info-content">
+                    {{item.sucessRule}}</text>
+            </view>
+            <view class="card-body-info" s-if="{{item.accessories}}">
+                <view class="body-info-title">配件介绍
+                </view>
+                <text class="body-info-content">
+                   {{item.accessories}}</text>
+            </view>
+
+            <view class="card-body-info" s-if="{{item.process}}">
+                <view class="body-info-title">游戏流程
+                </view>
+                <text class="body-info-content">
+                {{item.process}}</text>
+            </view>
+        </view>
+        <view class="card-body white-page" s-if="{{num[item.gameId]==2}}">
+            <view class="card-body-info" style="white-space: normal;">
+                <view class="inside">{{item.strategy}}</view></view>
+
+        </view>
+        <view class="card-body white-page" s-if="{{num[item.gameId]==3}}">
+            <view scroll-y="true">
+                <new-comment id="NewComment" gameID="{{item.gameId}}" gameTitle="{{item.title}}" contentMinLen='1'>
+                </new-comment>
+            </view>
+        </view>
+
+    </view></view>
+    <view s-else>
+        <view class="missing-box" bindtap="LoadingMethod">
+                <image class="signal" src="../../images/loading.svg"></image>
+                <view>正在加载，请稍等呦</view>
+            </view>
+        </view>
+
+</view>

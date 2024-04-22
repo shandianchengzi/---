@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "new-comment": "/component/commentTest/commentTest",
+        "star":"/component/star/star"
+    }
+}

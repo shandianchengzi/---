@@ -1,0 +1,82 @@
+<view style="display:{{display}};">
+    <!-- 评论控件区 把它fixed到底部并z-index:666，别删了-->
+    <view class="home-btn">
+        <image src="../../images/writing.svg" bindtap="inputStart"></image>
+    </view>
+    <view style="display:{{enableComment?'block':'none'}}" class="commentInput">
+        <view class="menuBackground" catchtap="hiddenMenubox" style="display:{{menuBackgroup ? 'block' : 'none'}}">
+        </view>
+        <view style="display:{{display}};background:white">
+            <view class="comment-fixed ">
+                <form catchsubmit="bindFormSubmit" report-submit="true">
+                <score bind:scoring="scoring" id="m"></score>
+                    <view class="comment-respond">
+                        <view class="comment-box">
+                            <image src="{{randomAvatar}}" class="img-plus" style="margin-left:20rpx;margin-right:20rpx"
+                                catchtap="goHome"></image>
+                            <textarea class="comment-input" type='text' confirm-type="send" cursor-spacing="20" focus="true"
+                                maxlength="{{contentMaxLen}}" name="inputComment" value="{=content=}"
+                                placeholder="{{placeholder}}" focus="{{focus}}" 
+                                placeholder-style="font-size:10pt;color:#959595" />
+                            <button formType="submit" class="comment-button touch-active " >
+                                <image id="post" src="../../images/post.svg" name="submit">
+                                </image>
+                            </button>
+                        </view>
+                    </view>
+                </form>
+            </view>
+        </view>
+    </view>
+    <view class="commentheader ">
+        有{{commentLen}}条评论
+    </view>
+
+        <block s-key="id" s-for="item, index in commentsList">
+            <view class="comment ">
+                <view class="comment-user">
+                    <!-- 头像显示 -->
+                    <block s-if="item.avatar">
+                        <image src="{{item.avatar}}" class="gravatarImg"></image>
+                    </block>
+                    <block s-else>
+                        <image src="https://cdn.v2ex.com/gravatar/{{md5.hexMD5(item.nick)}}?d=retro&v=1.3.6"
+                            class="gravatarImg"></image>
+                    </block>
+                    <!-- 显示评论列表 -->
+                    <view style='display:flex;flex-direction: row ;width: 100%'>
+                        <view data-id="{{item.commentId}}" data-name="{{item.nick}}"
+                            data-commentdate="{{item.createdAt}}" class="date" style="font-size:8pt;margin-right:5%;">{{item.createdAt}}</view>
+                        <star gameScore="{{item.score}}" isText="false"/>
+                    </view>
+                    <view >
+
+                    </view>
+                </view>
+                <view class="comment-summary " > {{item.comment}}</view>
+            </view>
+        </block>
+
+        <!-- 是否加载更多评论区 -->
+        <view s-if="{{isLoadSucess}}">
+            <view s-if="{{!isLastLoad}}" class="tipOne">
+            <view s-if="{{commentsList.length}}"><button bindtap="LoadingMethod">
+                    点击显示更多评论</button></view>
+                    <view s-else><view class="missing-box" bindtap="LoadingMethod">
+                <image class="signal" src="../../images/loading.svg"></image>
+                <view>正在加载，请稍等呦</view>
+            </view></view>
+                
+            </view>
+            <view s-else class="tipTwo">
+                已经到底了</view>
+            </view>
+        <view s-else>
+            <view  class="tipThree">
+                评论加载失败，请检查你的网络状态
+                <button bindtap="LoadingMethod">重试</button>
+            </view>
+        </view>
+
+
+</view>

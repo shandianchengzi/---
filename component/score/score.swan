@@ -1,0 +1,7 @@
+
+<view class="stars-box"  >
+  <block s-for="{{list}}" s-key="index" >
+    <image src="{{item}}" class="star" data-index="{{index}}" s-for-index="{{index}}" bindtap="scoring"></image>
+  </block>
+</view>
+<view class="placeholder">轻点星星评分</view>

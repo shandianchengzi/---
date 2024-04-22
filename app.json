@@ -1,0 +1,38 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/search/search",
+        "pages/feedback/feedback"
+    ],
+    "window": {
+        "navigationBarBackgroundColor": "#ffffff",
+        "navigationBarTextStyle": "black",
+        "navigationBarTitleText": "锂电羊桌游",
+        "backgroundTextStyle": "light"
+    },
+    "style": "v2",
+    "subPackage": [
+        {
+            "root": "packageA",
+            "pages": [
+                "pages/index/index",
+                "pages/search/search",
+                "pages/feedback/feedback"
+            ]
+        }
+    ],
+    "routes": [
+        {
+            "path": "index",
+            "page": "pages/index/index"
+        },
+        {
+            "path": "search",
+            "page": "pages/search/search"
+        },
+        {
+            "path": "feedback",
+            "page": "pages/feedback/feedback"
+        }
+    ]
+}

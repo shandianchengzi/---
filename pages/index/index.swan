@@ -1,0 +1,119 @@
+<!-- index.swan -->
+<view class="container">
+    <!-- 顶部搜索区 -->
+    <view class="top">
+        <view class="topsearch">
+            <view class="frame">
+                <image bindtap="search" src="../../images/搜索.png" class="search_btn"></image>
+                <input value="{=inputText=}" bindinput="searchInput" bindconfirm="search" bindfocus="inputFocus"
+                    bindblur="inputNotFocus" placeholder="{{placeholder}}" />
+            </view>
+            <view class="list-box" s-if="{{!isInputFocus}}">
+                <view class='list-msg2' bindtap='showDownBox'>
+                    <text style="font-size:11pt;font-family:'Segoe UI'">{{selectTitle}}</text>
+                    <image style='height:20rpx;width:20rpx;' src="{{arrow}}"></image>
+                </view>
+            </view>
+            <view class="search-btn" bindtap="search" s-else>搜索</view>
+            <view class="select_box" s-if="{{!isInputFocus&&select}}">
+                <view s-if="{{show[4]}}">
+                    <view class="select_one" bindtap="numLimit" data-name="人数" data-id='4'>人数</view>
+                </view>
+                <view s-if="{{show[0]}}">
+                    <view class="select_one" bindtap="numLimit" data-name="1~3人" data-id='0'>1~3人</view>
+                </view>
+                <view s-if="{{show[1]}}">
+                    <view class="select_one" bindtap="numLimit" data-name="4~8人" data-id='1'>4~8人</view>
+                </view>
+                <view s-if="{{show[2]}}">
+                    <view class="select_one" bindtap="numLimit" data-name="9~12人" data-id='2'>9~12人</view>
+                </view>
+                <view s-if="{{show[3]}}">
+                    <view class="select_one" bindtap="numLimit" data-name=">12人" data-id='3'>>12人</view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 占位  -->
+    <view class="topsearch">
+        <view class="frame">
+            <image bindtap="search" src="../../images/搜索.png" class="search_btn"></image>
+            <text class="toFillBlank" value="111" />
+        </view>
+    </view>
+    <view s-if="{{!loadQuerySucess}}">
+        <!---->
+        <view class="missing-box" bindtap="LoadingMethod">
+            <image class="signal" src="../../images/wifi.svg"></image>
+            <view>网络不给力，请稍后重试</view>
+            <view class="reload-btn">重新加载</view>
+        </view>
+    </view>
+    <view s-else>
+        <view s-if="{{!isInputFocus}}" style="background-color:#f1f1f1;">
+            <view class="card-list">
+                <view class="card-list-item" s-key="id" s-for="item, index in gamesList" bindtap="go_ToSearchResult"
+                    data-gameId="{{item.gameId}}">
+                    <view class="card-upInfo">
+                        <image src="{{item.avatar}}"></image>
+                        <video class="upRightBox" s-if="{{item.video[0]=='h'}}" src="{{item.video}}"
+                            catchtap="noThing"></video>
+                        <view class="upRightBox" s-else style="background-color:{{item.color}};">
+                            <view class="winBox"><text>{{item.sucessRule}}</text></view>
+                        </view>
+                    </view>
+                    <view class="card-midInfo">
+                        <text class="item-title">{{item.title}}</text>
+                        <text class='item-range'>{{item.num}}</text>
+                    </view>
+                    <view>
+                        <star gameScore="{{item.score}}">
+                            <star />
+                    </view>
+                    <view class="card-brief">
+                        <text s-if="item.brief">{{item.brief}}</text>
+                        <text s-else>暂无简介，点击查看详情吧！</text>
+                    </view>
+                    <view class="card-downInfo">
+                        <view class="item-tag" s-key="idx" s-for-item="tag" s-for="{{item.tags}}">
+                            <text data-content="{{tag}}" catchtap="go_search">{{tag}}</text>
+                        </view>
+                    </view>
+                </view>
+                <view s-if="{{gamesList.length}}">
+                    <!---->
+                    <view class="bottom-line" s-if="{{isLastLoad}}">
+                        <view class="last-line">
+                            <p>已经到底了~</p>
+                        </view>
+                    </view>
+                </view>
+                <view s-else>
+                    <view class="missing-box" bindtap="LoadingMethod">
+                        <image class="signal" src="../../images/loading.svg"></image>
+                        <view>正在加载，请稍等呦</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+        <view s-else>
+            <view class="suggest-page">
+                <text class='title'>推荐搜索</text>
+                <view class="tips-container">
+                    <view class="names-container">
+                        <view class='game-name' s-key="id" s-for="item, index in namesList" bindtap="go_search"
+                            data-content="{{item.content}}">{{item.content}}</view>
+                    </view>
+                    <view class="tags-container">
+                        <view class='game-tag' s-key="id" s-for="item, index in tagsList" bindtap="go_search"
+                            data-content="{{item.content}}">{{item.content}}</view>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+    <!-- 小功能按键 -->
+    <view class="home-btn">
+        <image src="../../images/top.svg" bindtap="returnSearch"></image>
+    </view>
+</view>

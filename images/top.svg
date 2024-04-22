@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="98" height="98" viewBox="0 0 98 98">
+  <defs>
+    <filter id="椭圆_4" x="0" y="0" width="98" height="98" filterUnits="userSpaceOnUse">
+      <feOffset dy="3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="3" result="blur"/>
+      <feFlood flood-opacity="0.102"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="组_42" data-name="组 42" transform="translate(-633 -1299)">
+    <g transform="matrix(1, 0, 0, 1, 633, 1299)" filter="url(#椭圆_4)">
+      <circle id="椭圆_4-2" data-name="椭圆 4" cx="40" cy="40" r="40" transform="translate(9 6)" fill="#fff"/>
+    </g>
+    <path id="联合_2" data-name="联合 2" d="M826.5,812.855v0Zm-.035-.626,11.164,9.551Zm0,0L815.3,821.78Zm0,0,.267-.229ZM826.465,812.229ZM826.2,812l.267.229ZM814,807h0Z" transform="translate(-144.5 523.5)" fill="none" stroke="#707070" stroke-linecap="round" stroke-width="1"/>
+  </g>
+</svg>
